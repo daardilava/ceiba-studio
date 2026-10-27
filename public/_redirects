@@ -1,0 +1,7 @@
+# Short, stable URLs for app-store listings and printed material.
+# Docs: https://developers.cloudflare.com/pages/configuration/redirects/
+/privacy     /en/mitimiti/privacy/   301
+/terms       /en/mitimiti/terms/     301
+/support     /en/mitimiti/support/   301
+/delete-account  /en/mitimiti/support/#delete  301
+/mitimiti    /en/mitimiti/           301
