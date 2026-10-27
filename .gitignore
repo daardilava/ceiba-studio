@@ -1,0 +1,26 @@
+# dependencies
+/node_modules
+
+# build output
+/.next/
+/out/
+*.tsbuildinfo
+next-env.d.ts
+
+# testing
+/coverage
+
+# env files (commit .env.example only)
+.env*
+!.env.example
+
+# logs
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.pem
+
+# Cloudflare
+.wrangler/
