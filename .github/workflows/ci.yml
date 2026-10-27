@@ -72,4 +72,7 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version-file: .nvmrc
-      - run: npx --yes -p @commitlint/cli@19 -p @commitlint/config-conventional@19 commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+          cache: npm
+      # Uses the project's pinned commitlint so `extends` resolves from node_modules.
+      - run: npm ci --ignore-scripts
+      - run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
