@@ -1,0 +1,125 @@
+# CLAUDE.md
+
+Context for AI coding assistants (Claude Code and similar). Humans: start with
+[README.md](README.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## What this is
+
+The public website of Ceiba Studio: an app hub, the MitiMiti landing page, its legal pages
+(privacy, terms, support / account deletion, imprint) and long-form guides, in English, Spanish and
+German. It is a **fully static** Next.js 16 export (`out/`) served by Cloudflare Pages. There is no
+server, database or API.
+
+## Commands
+
+```bash
+npm run dev          # dev server, http://localhost:3000
+npm run check        # format:check + lint + typecheck + test (run before every commit)
+npm run build        # static export into out/ (also catches static-export violations)
+npm start            # serve out/ to check the production build
+npm test -- routes   # run a single test file by name
+npm run lint:fix     # ESLint autofix
+npm run format       # Prettier on every file
+```
+
+Node 22 (`.nvmrc`). Use npm, not pnpm/yarn: `package-lock.json` is the lockfile.
+
+## Architecture rules (do not break)
+
+1. **Static only.** `output: 'export'` in `next.config.ts`. No API routes, Server Actions,
+   middleware/proxy, `cookies()`/`headers()`, ISR, `revalidate`, or `next/image` optimisation.
+   Every dynamic segment needs `generateStaticParams` and `dynamicParams = false`.
+2. **URLs come from `src/lib/routes.ts`.** Never hard-code a path in a component. Paths end in
+   `/` (`trailingSlash: true`).
+3. **Every user-facing string exists in all three locales** (`en`, `es`, `de`).
+   - UI text: `src/i18n/dictionaries/{en,es,de}.ts`, typed by `src/i18n/types.ts`.
+   - Legal text: `src/content/legal/{privacy,terms}.{locale}.json`. Spanish is legally binding.
+   - Guides: `src/content/guides/*.{locale}.ts`. These are the exception: they exist only in some
+     locales (see `guideSlugs`).
+   - `src/i18n/dictionaries.test.ts` fails if keys, list lengths or legal section counts differ.
+4. **Server Components by default.** `'use client'` only for real interactivity (currently only
+   `theme-toggle.tsx`). Keep client bundles tiny.
+5. **Metadata via `pageMetadata()`** in `src/lib/seo.ts`, which sets canonical, hreflang
+   (`alternatesFor` / `guideAlternates`) and OpenGraph. Every page exports `generateMetadata`.
+6. **No raw HTML from content.** Use `<RichText>` (`**bold**` only), never
+   `dangerouslySetInnerHTML` for content. The two inline scripts (theme init, root locale
+   redirect) are the only exceptions.
+7. **Site settings** (support email, imprint, store links) live in `src/lib/site.ts`. Values in
+   `[BRACKETS]` are intentional placeholders until launch. Do not invent real values.
+
+## Page pattern
+
+Every page under `src/app/[locale]/` follows this shape:
+
+```tsx
+export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
+  const locale = await resolveLocale(params); // 404s on an unknown locale
+  const t = getDictionary(locale).section;
+  return pageMetadata({
+    locale,
+    title: t.metaTitle,
+    description: t.metaDescription,
+    path: routes.x(locale),
+    alternates: alternatesFor('x'),
+  });
+}
+
+export default async function XPage({ params }: LocaleParams) {
+  const locale = await resolveLocale(params);
+  // ...
+}
+```
+
+Adding a page means: a route in `routes`, the page file, dictionary keys in all three locales,
+and an entry in the `pages` list of `src/app/sitemap.ts`. Guides are added to the sitemap
+automatically from `guideSlugs`.
+
+## Code style
+
+- TypeScript strict with `noUncheckedIndexedAccess`; no `any`, no non-null `!` to silence it.
+  Prefer `as const` and `satisfies` to derive types from data.
+- Imports use the `@/` alias (`@/lib/routes`). Type-only imports are inline:
+  `import { type Locale } from ...` (enforced by ESLint).
+- Prettier: single quotes, semicolons, trailing commas, 100 columns. Do not hand-format.
+- File names are kebab-case; components are named exports (pages and layouts are default exports).
+- Comments explain _why_, not what. Short JSDoc on exported helpers.
+- Styling: Tailwind v4 utilities plus the CSS variables in `src/app/globals.css`
+  (`--bg`, `--ink`, `--accent`…). Dark mode is `data-theme="dark"` on `<html>`, via the `dark:`
+  custom variant. Never use `prefers-color-scheme` directly in components.
+
+## Accessibility and UX bar
+
+Semantic HTML, one `<h1>` per page, visible focus states, 44 px minimum touch targets, WCAG AA
+contrast in **both** themes, `aria-label` on icon-only buttons, works at 375 px width.
+
+## Testing
+
+Vitest, node environment, files `src/**/*.test.ts` next to the code. Test pure logic (routes,
+inline markup, dictionary parity). There are no component or browser tests. Verify UI changes
+with `npm run build && npm start`.
+
+## Git workflow
+
+- Branch from `main`: `feat/…`, `fix/…`, `docs/…`, `chore/…`. Never commit directly to `main`.
+- [Conventional Commits](https://www.conventionalcommits.org), enforced by commitlint:
+  `feat(mitimiti): …`, `fix(i18n): …`, `docs: …`. Subject lowercase, imperative, no period.
+- Pre-commit runs lint-staged (ESLint + Prettier). Never bypass hooks with `--no-verify`.
+- CI (`.github/workflows/ci.yml`) runs format, lint, typecheck, test and build on every PR.
+
+## Gotchas
+
+- `/` has no server redirect. `src/app/page.tsx` picks the locale in the browser, with a
+  `<noscript>` fallback to `/en/`.
+- Headers (CSP, HSTS, caching) live in `public/_headers` and redirects in `public/_redirects`.
+  Cloudflare applies them; `next.config.ts` `headers()`/`redirects()` do **not** work with a static
+  export. The CSP allows no third-party origins: adding analytics, fonts or embeds needs a CSP
+  change.
+- Fonts are self-hosted through `next/font` (`src/app/fonts.ts`). Do not add Google Fonts `<link>`s.
+- `NEXT_PUBLIC_SITE_URL` is inlined at **build** time. Changing it requires a rebuild.
+
+## More context
+
+- [docs/architecture.md](docs/architecture.md): how the pieces fit together
+- [docs/content.md](docs/content.md): editing copy, legal texts and guides
+- [docs/deployment.md](docs/deployment.md): Cloudflare Pages setup and the launch checklist
+- [docs/adr/](docs/adr/): why key decisions were made
