@@ -1,4 +1,6 @@
 /** Conventional Commits: https://www.conventionalcommits.org */
-export default {
+const config = {
   extends: ['@commitlint/config-conventional'],
 };
+
+export default config;
