@@ -18,5 +18,12 @@ export default defineConfig([
       ],
     },
   },
-  globalIgnores(['.next/**', 'out/**', 'node_modules/**', 'next-env.d.ts', 'coverage/**']),
+  globalIgnores([
+    '.next/**',
+    'out/**',
+    'node_modules/**',
+    'next-env.d.ts',
+    'coverage/**',
+    '.wrangler/**',
+  ]),
 ]);
