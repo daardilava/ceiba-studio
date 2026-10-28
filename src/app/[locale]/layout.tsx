@@ -41,7 +41,13 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   return (
     // data-theme is set by the inline script before paint, so React must not complain.
-    <html lang={localeTags[locale]} className={fontVariables} suppressHydrationWarning>
+    // data-scroll-behavior lets Next.js skip the smooth scroll from globals.css on navigation.
+    <html
+      lang={localeTags[locale]}
+      className={fontVariables}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <head>
         {/*
           The site ships its own dark theme. This asks the Dark Reader extension not to
