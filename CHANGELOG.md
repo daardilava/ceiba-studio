@@ -21,6 +21,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Restructured `README.md` into an overview with a documentation index.
 
+### Fixed
+
+- Hydration mismatch errors caused by the Dark Reader browser extension; the site opts out with
+  `<meta name="darkreader-lock">` and keeps its own dark theme.
+- Smooth scrolling no longer animates page changes (`data-scroll-behavior="smooth"`).
+
 ## [0.1.0] - 2026-10
 
 ### Added
