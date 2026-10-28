@@ -7,10 +7,10 @@ repository itself through Workers Builds; GitHub Actions only verifies it.
 
 The deployment is described in code, in [`wrangler.jsonc`](../wrangler.jsonc).
 
-| Event                    | Result                                                |
-| ------------------------ | ----------------------------------------------------- |
-| Push / merge to `main`   | Production deploy                                     |
-| Push to any other branch | Preview version with its own URL (if enabled, step 4) |
+| Event                    | Result                                              |
+| ------------------------ | --------------------------------------------------- |
+| Push / merge to `main`   | Production deploy                                   |
+| Push to any other branch | Preview with its own URL, linked from the PR checks |
 
 ## One-time setup
 
@@ -36,8 +36,9 @@ The deployment is described in code, in [`wrangler.jsonc`](../wrangler.jsonc).
    Until a custom domain is set, use the Worker's URL shown in the dashboard,
    `https://ceiba-studio.<account-subdomain>.workers.dev`.
 
-4. Optional, for pull request previews: **Settings → Build → Branch control**, enable
-   **Builds for non-production branches** with the command `npx wrangler versions upload`.
+4. Pull request previews: **Settings → Build → Branch control** → **Builds for non-production
+   branches** runs `npx wrangler preview`. It needs the `previews` block in `wrangler.jsonc`,
+   which is already there.
 5. Custom domain: **Settings → Domains & Routes → Add → Custom domain**. HTTPS is automatic.
    Then update `NEXT_PUBLIC_SITE_URL` and redeploy.
 
@@ -101,6 +102,7 @@ Google Play requires a privacy policy URL and an account-deletion URL:
 | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
 | `Configuring project for Next.js with OpenNext` / `pages-manifest.json` ENOENT | `wrangler.jsonc` is missing on the deployed branch, so wrangler tried to add a server. Make sure it is committed. |
 | `Installing project dependencies: bun install`                                 | `package-lock.json` is missing on the deployed branch. Commit it.                                                 |
+| `Your Wrangler configuration is missing a previews block` (on PR builds)       | `wrangler preview` needs `"previews": {}` in `wrangler.jsonc`. Keep it there.                                     |
 | Canonical / sitemap URLs point to the wrong domain                             | `NEXT_PUBLIC_SITE_URL` build variable is wrong or missing. Fix it and redeploy.                                   |
 
 ## Rollback

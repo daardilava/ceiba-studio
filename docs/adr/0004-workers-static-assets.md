@@ -29,6 +29,7 @@ Everything else in ADR 0001 stands: no server-side runtime.
   production locally.
 - ✅ Static asset requests are free and unlimited, as on Pages.
 - ✅ A path to server features later: adding a `main` script to the same Worker.
-- ❌ Preview URLs for branches need **Builds for non-production branches** to be enabled.
+- ❌ Branch previews run `wrangler preview` (open beta), which needs a `previews` block in
+  `wrangler.jsonc`.
 - ❌ The default URL is `*.workers.dev` instead of `*.pages.dev`, so `NEXT_PUBLIC_SITE_URL`
   must be set explicitly.
