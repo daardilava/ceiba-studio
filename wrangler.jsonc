@@ -12,4 +12,8 @@
     // Matches trailingSlash: true in next.config.ts (/en/mitimiti → /en/mitimiti/).
     "html_handling": "auto-trailing-slash",
   },
+  // Enables `wrangler preview`, which Workers Builds runs for non-production branches (PR previews).
+  // Empty on purpose: previews inherit the assets and compatibility settings above.
+  // Docs: https://developers.cloudflare.com/workers/previews/configuration/
+  "previews": {},
 }
