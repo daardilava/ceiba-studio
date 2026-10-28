@@ -43,6 +43,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     // data-theme is set by the inline script before paint, so React must not complain.
     <html lang={localeTags[locale]} className={fontVariables} suppressHydrationWarning>
       <head>
+        {/*
+          The site ships its own dark theme. This asks the Dark Reader extension not to
+          restyle it, which would also rewrite SVG attributes and break hydration.
+        */}
+        <meta name="darkreader-lock" />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="min-h-screen">
