@@ -14,6 +14,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   Records.
 - `CHANGELOG.md`.
 - Committed `package-lock.json` for reproducible installs.
+- `wrangler.jsonc` deploying the site as an assets-only Cloudflare Worker, with `wrangler` pinned
+  as a dev dependency.
 
 ### Changed
 

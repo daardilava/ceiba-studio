@@ -3,11 +3,12 @@
 Short records of significant decisions: the context, what was decided, and what it costs.
 Format: [Michael Nygard's template](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions).
 
-| ADR                                               | Title                                  | Status   |
-| ------------------------------------------------- | -------------------------------------- | -------- |
-| [0001](0001-static-export-on-cloudflare-pages.md) | Static export on Cloudflare Pages      | Accepted |
-| [0002](0002-locale-in-url-path.md)                | Locale as the first URL segment        | Accepted |
-| [0003](0003-typed-content-instead-of-markdown.md) | Typed content instead of Markdown/HTML | Accepted |
+| ADR                                               | Title                                      | Status                    |
+| ------------------------------------------------- | ------------------------------------------ | ------------------------- |
+| [0001](0001-static-export-on-cloudflare-pages.md) | Static export on Cloudflare Pages          | Accepted, amended by 0004 |
+| [0002](0002-locale-in-url-path.md)                | Locale as the first URL segment            | Accepted                  |
+| [0003](0003-typed-content-instead-of-markdown.md) | Typed content instead of Markdown/HTML     | Accepted                  |
+| [0004](0004-workers-static-assets.md)             | Deploy as an assets-only Cloudflare Worker | Accepted                  |
 
 ## Adding a record
 

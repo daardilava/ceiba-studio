@@ -3,7 +3,7 @@
 ## Overview
 
 The site is a static Next.js export. At build time, every page is rendered to HTML for every
-locale. The output (`out/`) is a folder of plain files that Cloudflare Pages serves from its edge
+locale. The output (`out/`) is a folder of plain files that Cloudflare Workers serves from its edge
 network. Nothing runs on a server at request time.
 
 ```mermaid
@@ -15,7 +15,7 @@ flowchart LR
     P[Pages<br/>src/app/&#91;locale&#93;]
   end
   P -- next build --> O[out/<br/>static HTML, CSS, JS]
-  O -- git push --> CF[Cloudflare Pages<br/>+ _headers, _redirects]
+  O -- git push --> CF[Cloudflare Workers<br/>static assets<br/>+ _headers, _redirects]
   CF --> U[Visitors]
 ```
 

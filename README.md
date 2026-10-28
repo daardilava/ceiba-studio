@@ -11,7 +11,7 @@ in English, Español and Deutsch.
 ![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
-![Cloudflare Pages](https://img.shields.io/badge/Cloudflare-Pages-F38020?logo=cloudflare&logoColor=white)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare&logoColor=white)
 [![Conventional Commits](https://img.shields.io/badge/Conventional_Commits-1.0.0-FE5196?logo=conventionalcommits&logoColor=white)](https://www.conventionalcommits.org)
 
 </div>
@@ -34,7 +34,7 @@ in English, Español and Deutsch.
 ## Overview
 
 A **fully static** [Next.js](https://nextjs.org) site (App Router, `output: 'export'`) served
-from [Cloudflare Pages](https://pages.cloudflare.com)' global edge network. No servers, no
+from [Cloudflare Workers](https://developers.cloudflare.com/workers/static-assets/)' global edge network. No servers, no
 database, no runtime dependencies.
 
 - 🌍 **Three languages** with localized URLs, `hreflang` and a sitemap; missing translations fail
@@ -47,15 +47,15 @@ database, no runtime dependencies.
 
 ## Tech stack
 
-| Area      | Choice                                                           |
-| --------- | ---------------------------------------------------------------- |
-| Framework | Next.js 16 (App Router, static export), React 19                 |
-| Language  | TypeScript 5 (strict, `noUncheckedIndexedAccess`)                |
-| Styling   | Tailwind CSS 4, design tokens in `src/app/globals.css`           |
-| Fonts     | `next/font`, self-hosted at build time                           |
-| Testing   | Vitest                                                           |
-| Quality   | ESLint 9 (flat config), Prettier, Husky, lint-staged, commitlint |
-| CI/CD     | GitHub Actions (verify) → Cloudflare Pages (build and deploy)    |
+| Area      | Choice                                                                 |
+| --------- | ---------------------------------------------------------------------- |
+| Framework | Next.js 16 (App Router, static export), React 19                       |
+| Language  | TypeScript 5 (strict, `noUncheckedIndexedAccess`)                      |
+| Styling   | Tailwind CSS 4, design tokens in `src/app/globals.css`                 |
+| Fonts     | `next/font`, self-hosted at build time                                 |
+| Testing   | Vitest                                                                 |
+| Quality   | ESLint 9 (flat config), Prettier, Husky, lint-staged, commitlint       |
+| CI/CD     | GitHub Actions (verify) → Cloudflare Workers Builds (build and deploy) |
 
 ## Getting started
 
@@ -123,7 +123,7 @@ docs/                       architecture, content, deployment, ADRs
 | -------------------------------------- | -------------------------------------------------------- |
 | [Architecture](docs/architecture.md)   | How routing, i18n, content, SEO and theming fit together |
 | [Editing content](docs/content.md)     | Changing copy, legal texts and adding guides             |
-| [Deployment](docs/deployment.md)       | Cloudflare Pages setup, edge config, launch checklist    |
+| [Deployment](docs/deployment.md)       | Cloudflare setup, edge config, troubleshooting, launch   |
 | [Decision records](docs/adr/README.md) | Why the main technical decisions were made               |
 | [CLAUDE.md](CLAUDE.md)                 | Context and rules for AI coding assistants               |
 | [Changelog](CHANGELOG.md)              | Notable changes by version                               |
