@@ -3,7 +3,7 @@
 /*
  * Design tokens from the Ceiba Studio design: palette inspired by the ceiba tree
  * (foliage green, trunk brown, cream, sun yellow). Semantic tokens switch with
- * `data-theme` on <html>; see src/components/theme-script.tsx.
+ * `data-theme` on <html>; see src/lib/theme.ts.
  */
 :root {
   --bg: #f5efe4;

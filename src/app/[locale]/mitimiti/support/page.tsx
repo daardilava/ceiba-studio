@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { MitiWordmark } from '@/components/brand/miti';
 import { PageShell } from '@/components/layout/page-shell';
 import { RichText } from '@/components/ui/rich-text';
 import { getDictionary } from '@/i18n/get-dictionary';
