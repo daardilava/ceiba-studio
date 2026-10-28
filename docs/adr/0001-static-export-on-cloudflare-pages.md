@@ -1,6 +1,6 @@
 # 0001. Static export on Cloudflare Pages
 
-- **Status:** Accepted
+- **Status:** Accepted. Hosting amended by [0004](0004-workers-static-assets.md).
 - **Date:** 2026-10
 
 ## Context
