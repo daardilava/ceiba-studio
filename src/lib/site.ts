@@ -7,7 +7,7 @@ export const site = {
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ceiba-studio.pages.dev').replace(/\/$/, ''),
   supportEmail: 'diegoab2010@gmail.com',
   owner: 'Diego Armando Ardila Vargas',
-  imprintAddress: ['[STREET AND NUMBER]', '[POSTCODE, CITY]', '[COUNTRY]'],
+  imprintAddress: ['Seilerstraße 19a', '60313 Frankfurt am Main', 'Germany'],
   copyrightYear: 2026,
 } as const;
 
