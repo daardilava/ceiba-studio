@@ -166,7 +166,7 @@ const es: Dictionary = {
         'Registrar gastos compartidos y personales',
         'El saldo en vivo en los dos celulares',
         'Saldar cuentas y registrar pagos',
-        'Movimientos y Resumen de los últimos 3 meses',
+        'Todo el historial y presupuestos por categoría',
       ],
     },
     premium: {
@@ -175,8 +175,8 @@ const es: Dictionary = {
       price: '19,99 €',
       period: 'al año · o 2,99 € al mes',
       items: [
-        'Historial completo: todos los meses, no solo los últimos 3',
-        'Presupuestos por categoría, con aviso antes de llegar al límite',
+        'Escanear recibos: una foto y el gasto se llena solo',
+        'Dictar gastos: dilo en voz alta y queda registrado',
         'Exportar los movimientos a CSV o PDF',
         'Gastos recurrentes — muy pronto',
       ],
@@ -188,7 +188,7 @@ const es: Dictionary = {
     faqs: [
       {
         q: '¿MitiMiti es gratis?',
-        a: 'Sí. Registrar gastos, ver el saldo y saldar cuentas es gratis para siempre. Premium agrega el historial completo, los presupuestos y la exportación.',
+        a: 'Sí. Registrar gastos, ver el saldo, saldar cuentas, el historial completo y los presupuestos son gratis para siempre. Premium agrega escanear recibos, dictar gastos y la exportación.',
       },
       {
         q: '¿Tenemos que pagar Premium los dos?',

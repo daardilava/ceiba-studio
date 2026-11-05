@@ -163,7 +163,7 @@ const en: Dictionary = {
         'Log shared and personal expenses',
         'The live balance on both phones',
         'Settle up and record payments',
-        'Activity and Summary for the last 3 months',
+        'Full history and budgets per category',
       ],
     },
     premium: {
@@ -172,8 +172,8 @@ const en: Dictionary = {
       price: '19,99 €',
       period: 'per year · or 2,99 € per month',
       items: [
-        'Full history: every month, not just the last 3',
-        'Budgets per category, with a heads-up before you reach them',
+        'Scan receipts: one photo and the expense fills itself in',
+        'Dictate expenses: say it out loud and it’s logged',
         'Export your activity as CSV or PDF',
         'Recurring expenses — coming soon',
       ],
@@ -185,7 +185,7 @@ const en: Dictionary = {
     faqs: [
       {
         q: 'Is MitiMiti free?',
-        a: 'Yes. Logging expenses, the balance and settling up are free forever. Premium adds the full history, budgets and export.',
+        a: 'Yes. Logging expenses, the balance, settling up, the full history and budgets are free forever. Premium adds receipt scanning, dictation and export.',
       },
       {
         q: 'Do we both need to pay for Premium?',
