@@ -17,7 +17,7 @@ export function LanguageSwitcher({ current, alternates, label }: LanguageSwitche
 
   return (
     <nav aria-label={label}>
-      <ul className="bg-chip flex gap-0.5 rounded-full p-1">
+      <ul className="border-line flex gap-0.5 rounded-full border p-1">
         {available.map(({ l, href }) => {
           const active = l === current;
           return (
@@ -29,7 +29,7 @@ export function LanguageSwitcher({ current, alternates, label }: LanguageSwitche
                 aria-label={localeNames[l]}
                 aria-current={active ? 'page' : undefined}
                 className={`inline-flex min-h-9 min-w-10 items-center justify-center rounded-full text-[13px] font-bold no-underline ${
-                  active ? 'bg-foliage text-cream hover:text-cream' : 'text-ink'
+                  active ? 'bg-ink text-bg hover:text-bg' : 'text-muted hover:text-ink'
                 }`}
               >
                 {l.toUpperCase()}

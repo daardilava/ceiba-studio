@@ -1,15 +1,65 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { CeibaMascot } from '@/components/brand/ceiba-mascot';
 import { MitiAppIcon, MitiWordmark } from '@/components/brand/miti';
 import { PageShell } from '@/components/layout/page-shell';
+import { HeroPhone } from '@/components/mitimiti/phone-mockups';
 import { GuideCard } from '@/components/ui/guide-card';
+import { RichText } from '@/components/ui/rich-text';
 import { listGuides } from '@/content/guides';
 import { locales, localeNames, type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
 import { alternatesFor, routes } from '@/lib/routes';
 import { pageMetadata } from '@/lib/seo';
 import { resolveLocale, type LocaleParams } from '@/lib/params';
+import { mitimiti } from '@/lib/site';
+
+const storeButton =
+  'border-line text-ink hover:text-ink inline-flex min-h-14 flex-col justify-center rounded-2xl border-[1.5px] px-5 no-underline';
+
+/** Small outline icon for the hero perks list. */
+function PerkIcon({ d }: { d: string }) {
+  return (
+    <svg
+      className="text-accent size-[18px] flex-none"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d={d}
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/** Decorative rings and roots behind the hero phone, like a ceiba seen from above. */
+function HeroRings({ className }: { className: string }) {
+  return (
+    <svg className={className} viewBox="0 0 900 620" fill="none" aria-hidden="true">
+      {[420, 330, 245, 165].map((rx, i) => (
+        <ellipse
+          key={rx}
+          cx="450"
+          cy="250"
+          rx={rx}
+          ry={rx * 0.32}
+          stroke="currentColor"
+          strokeWidth={1.5 - i * 0.2}
+        />
+      ))}
+      <path
+        d="M450 330v120M450 380l-90 120M450 380l90 120M450 420l-40 90M450 420l40 90"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 
 export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
   const locale = await resolveLocale(params);
@@ -41,32 +91,69 @@ export default async function HomePage({ params }: LocaleParams) {
         { href: routes.support(locale), label: t.nav.support },
       ]}
     >
-      <section className="mx-auto flex max-w-[1120px] flex-wrap items-center gap-12 px-6 pt-24 pb-22">
-        <div className="min-w-0 flex-[3_1_520px]">
-          <p className="text-brown mb-5 text-sm font-bold tracking-[0.08em] uppercase">
-            {t.eyebrow}
-          </p>
-          <h1 className="font-display m-0 text-[clamp(40px,6vw,72px)] leading-[1.02] font-bold tracking-[-0.02em]">
-            {t.title}
-          </h1>
-          <p className="text-muted mt-7 max-w-[580px] text-[19px] leading-relaxed">{t.lead}</p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a
-              href="#apps"
-              className="bg-sun text-forest-ink hover:text-forest-ink inline-flex min-h-13 items-center rounded-full px-[26px] text-base font-bold no-underline"
-            >
-              {t.ctaApps}
-            </a>
-            <Link
-              href={routes.support(locale)}
-              className="border-foliage text-accent inline-flex min-h-13 items-center rounded-full border-[1.5px] px-[26px] text-base font-bold no-underline"
-            >
-              {t.ctaContact}
-            </Link>
+      <section className="relative overflow-hidden">
+        <div className="relative mx-auto flex max-w-[1120px] flex-wrap items-center gap-x-12 gap-y-16 px-6 pt-20 pb-22">
+          <div className="min-w-0 flex-[3_1_520px]">
+            <p className="text-brown dark:text-sun mb-5 text-sm font-bold tracking-[0.12em] uppercase">
+              {t.eyebrow}
+            </p>
+            <h1 className="font-display m-0 text-[clamp(44px,7vw,84px)] leading-[0.98] font-bold tracking-[-0.03em]">
+              {t.title} <span className="text-accent block">{t.titleHighlight}</span>
+            </h1>
+            <p className="text-muted mt-7 max-w-[540px] text-[19px] leading-relaxed">
+              <RichText text={t.lead} strongClassName="text-ink" />
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Link
+                href={routes.mitimiti(locale)}
+                className="bg-sun text-forest-ink hover:text-forest-ink inline-flex min-h-14 items-center gap-2.5 rounded-full px-7 text-[17px] font-bold no-underline"
+              >
+                {t.ctaMitimiti}
+                <svg className="size-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M5 12h13M13 6l6 6-6 6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </Link>
+              <a href={mitimiti.googlePlayUrl} rel="noopener" className={storeButton}>
+                <span className="text-[11px] font-medium">{t.googlePlayPrefix}</span>
+                <span className="text-[17px] leading-tight font-bold">Google Play</span>
+              </a>
+              {mitimiti.appStoreUrl ? (
+                <a href={mitimiti.appStoreUrl} rel="noopener" className={storeButton}>
+                  <span className="text-[11px] font-medium">{t.appStorePrefix}</span>
+                  <span className="text-[17px] leading-tight font-bold">App Store</span>
+                </a>
+              ) : (
+                <span className={`${storeButton} cursor-default`}>
+                  <span className="text-[11px] font-medium">{t.appStoreSoonPrefix}</span>
+                  <span className="text-[17px] leading-tight font-bold">App Store</span>
+                </span>
+              )}
+            </div>
+            <ul className="text-muted mt-10 flex flex-wrap gap-x-7 gap-y-3 text-[15px]">
+              <li className="flex items-center gap-2">
+                <PerkIcon d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM5.6 5.6l12.8 12.8" />
+                {t.perks.noAds}
+              </li>
+              <li className="flex items-center gap-2">
+                <PerkIcon d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z" />
+                {t.perks.noTracking}
+              </li>
+              <li className="flex items-center gap-2">
+                <PerkIcon d="M4 12a8 8 0 1 0 2.3-5.7M4 4v4h4" />
+                {[locale, ...otherLocales].map((l: Locale) => localeNames[l]).join(' · ')}
+              </li>
+            </ul>
           </div>
-        </div>
-        <div className="flex flex-[2_1_300px] justify-center">
-          <CeibaMascot withArms label={t.mascotLabel} className="size-[min(340px,80vw)]" />
+          <div className="relative flex flex-[2_1_300px] justify-center">
+            <HeroRings className="text-line pointer-events-none absolute top-1/2 left-1/2 h-[620px] w-[900px] -translate-x-1/2 -translate-y-[42%]" />
+            <HeroPhone t={dict.mitimiti.homeScreen} className="rotate-[4deg]" />
+          </div>
         </div>
       </section>
 

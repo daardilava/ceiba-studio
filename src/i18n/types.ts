@@ -22,11 +22,17 @@ export interface Dictionary {
     metaDescription: string;
     nav: { apps: string; guides: string; about: string; support: string };
     eyebrow: string;
+    /** Rendered as `title` followed by `titleHighlight` in the accent colour. */
     title: string;
+    titleHighlight: string;
+    /** `**text**` marks bold segments. */
     lead: string;
-    ctaApps: string;
-    ctaContact: string;
-    mascotLabel: string;
+    ctaMitimiti: string;
+    /** Small line above the store name on the store buttons. */
+    googlePlayPrefix: string;
+    appStorePrefix: string;
+    appStoreSoonPrefix: string;
+    perks: { noAds: string; noTracking: string };
     appsTitle: string;
     mitimitiCategory: string;
     mitimitiBlurb: string;
@@ -70,6 +76,7 @@ export interface Dictionary {
       budgetProgress: string;
       daysLeft: string;
       recent: string;
+      tabs: { home: string; activity: string; summary: string; settings: string };
       rows: { title: string; meta: string; amount: string; effect: string; owed: boolean }[];
     };
     featuresEyebrow: string;
