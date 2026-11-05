@@ -19,13 +19,16 @@ const es: Dictionary = {
     metaTitle: 'Ceiba Studio — Apps simples y privadas para el día a día',
     metaDescription:
       'Ceiba Studio crea apps simples y privadas para el día a día en español, inglés y alemán, como MitiMiti, la app para dividir gastos en pareja.',
-    nav: { apps: 'Apps', guides: 'Guías', about: 'Nosotros', support: 'Soporte' },
-    eyebrow: 'Estudio independiente de apps',
-    title: 'Apps con raíces profundas y sombra para todos.',
-    lead: 'Apps simples y privadas para el día a día, hechas con cariño entre Colombia y Alemania. En español, English y Deutsch.',
-    ctaApps: 'Ver nuestras apps',
-    ctaContact: 'Contacto',
-    mascotLabel: 'Mascota de Ceiba Studio: una ceiba sonriente con una flor amarilla, saludando',
+    nav: { apps: 'Apps', guides: 'Guías', about: 'Nosotros', support: 'Contacto' },
+    eyebrow: 'Estudio independiente de apps · Colombia × Alemania',
+    title: 'Apps con raíces',
+    titleHighlight: 'profundas.',
+    lead: 'Apps simples y privadas para el día a día. Empezamos con **MitiMiti**: cuentas claras en pareja, sin discusiones.',
+    ctaMitimiti: 'Conocer MitiMiti',
+    googlePlayPrefix: 'Disponible en',
+    appStorePrefix: 'Descárgala en',
+    appStoreSoonPrefix: 'Muy pronto en',
+    perks: { noAds: 'Sin anuncios', noTracking: 'Sin rastreo' },
     appsTitle: 'Nuestras apps',
     mitimitiCategory: 'Finanzas · Android y iOS',
     mitimitiBlurb:
@@ -74,6 +77,7 @@ const es: Dictionary = {
       budgetProgress: '$3.821.900 de $5.300.000',
       daysLeft: 'Quedan 8 días',
       recent: 'Recientes',
+      tabs: { home: 'Inicio', activity: 'Movimientos', summary: 'Resumen', settings: 'Ajustes' },
       rows: [
         {
           title: 'Mercado de la semana',
