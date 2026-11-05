@@ -168,7 +168,7 @@ const de: Dictionary = {
         'Gemeinsame und private Ausgaben erfassen',
         'Der aktuelle Saldo auf beiden Handys',
         'Ausgleichen und Zahlungen erfassen',
-        'Buchungen und Übersicht der letzten 3 Monate',
+        'Komplette Historie und Budgets pro Kategorie',
       ],
     },
     premium: {
@@ -177,8 +177,8 @@ const de: Dictionary = {
       price: '19,99 €',
       period: 'pro Jahr · oder 2,99 € im Monat',
       items: [
-        'Komplette Historie: alle Monate, nicht nur die letzten 3',
-        'Budgets pro Kategorie, mit Hinweis bevor ihr das Limit erreicht',
+        'Belege scannen: ein Foto, und die Ausgabe füllt sich von selbst aus',
+        'Ausgaben diktieren: sag es laut, und es ist erfasst',
         'Export als CSV oder PDF',
         'Wiederkehrende Ausgaben – bald',
       ],
@@ -190,7 +190,7 @@ const de: Dictionary = {
     faqs: [
       {
         q: 'Ist MitiMiti kostenlos?',
-        a: 'Ja. Ausgaben erfassen, den Saldo sehen und ausgleichen ist für immer kostenlos. Premium bringt die komplette Historie, Budgets und den Export.',
+        a: 'Ja. Ausgaben erfassen, den Saldo sehen, ausgleichen, die komplette Historie und Budgets sind für immer kostenlos. Premium bringt Belege scannen, Diktieren und den Export.',
       },
       {
         q: 'Müssen wir Premium beide bezahlen?',
